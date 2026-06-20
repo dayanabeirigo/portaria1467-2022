@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Infográfico: O Motor de Custeio do RPPS</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+html, body {
+    background-color: #f8fafc;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: #0f172a;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 320px;
+    max-height: 420px;
+}
+@media (min-width: 768px) {
+    .chart-container {
+        height: 380px;
+    }
+}
+.glass-card {
+    background: rgba(255, 255, 255, 0.98);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+.badge-node {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 9999px;
+    font-weight: 900;
+    color: white;
+    font-size: 1.25rem;
+}
+</style>
+</head>
+<body class="antialiased pb-20 selection:bg-blue-200">
+
+<header class="bg-gradient-to-r from-[#1E3A8A] to-[#14B8A6] text-white py-16 px-6 shadow-xl border-b-8 border-[#F97316] mb-12">
+    <div class="max-w-6xl mx-auto text-center">
+        <span class="bg-[#F97316] text-white px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest mb-6 inline-block shadow-md">Custeio e Equilíbrio Atuarial</span>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 tracking-tight drop-shadow-md">O Motor de Custeio do RPPS</h1>
+        <p class="text-xl md:text-2xl text-blue-100 font-light max-w-4xl mx-auto leading-relaxed">
+            Uma análise interativa do Capítulo III da Portaria MTP nº 1.467/2022: prazos, encargos moratórios, planos de déficit e anterioridade fiscal.
+        </p>
+    </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
+
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="space-y-6">
+            <h2 class="text-3xl font-black text-slate-800 border-b-4 border-[#1E3A8A] inline-block pb-2">1. O Tripé de Financiamento (Art. 7º)</h2>
+            <p class="text-lg text-slate-600 leading-relaxed">
+                O caráter contributivo e solidário exige que as receitas de capitalização do regime próprio sejam custeadas de forma compartilhada por todo o funcionalismo e pelo Ente patrocinador.
+            </p>
+            <p class="text-lg text-slate-600 leading-relaxed">
+                As alíquotas de custeio normal e as suplementares de amortização de déficit devem abranger de forma solidária todos os poderes do Ente.
+            </p>
+            <div class="space-y-4">
+                <div class="bg-blue-50 p-4 rounded-xl border-l-4 border-[#1E3A8A] flex items-center gap-4">
+                    <span class="text-3xl">🏛️</span>
+                    <div>
+                        <h4 class="font-bold text-[#1E3A8A]">Ente Federativo (Patronal)</h4>
+                        <p class="text-xs text-slate-600">Arque com as alíquotas patronais ordinárias e aportes suplementares.</p>
+                    </div>
+                </div>
+                <div class="bg-teal-50 p-4 rounded-xl border-l-4 border-[#14B8A6] flex items-center gap-4">
+                    <span class="text-3xl">💼</span>
+                    <div>
+                        <h4 class="font-bold text-[#0f766e]">Segurados Ativos</h4>
+                        <p class="text-xs text-slate-600">Contribuem obrigatoriamente sobre suas remunerações de cargo efetivo.</p>
+                    </div>
+                </div>
+                <div class="bg-orange-50 p-4 rounded-xl border-l-4 border-[#F97316] flex items-center gap-4">
+                    <span class="text-3xl">👵</span>
+                    <div>
+                        <h4 class="font-bold text-[#c2410c]">Inativos e Pensionistas</h4>
+                        <p class="text-xs text-slate-600">Contribuem sobre os proventos e pensões que excedem os tetos legais.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="glass-card p-8 rounded-3xl space-y-6">
+            <h3 class="text-center font-bold text-slate-800 text-xl mb-4">Composição de Custeio Recomendada</h3>
+            
+            <div class="space-y-4">
+                <div>
+                    <div class="flex justify-between text-sm font-bold text-slate-700 mb-1">
+                        <span>Aporte Patronal Ordinário + Suplementar</span>
+                        <span class="text-[#1E3A8A]">55%</span>
+                    </div>
+                    <div class="w-full bg-slate-200 h-5 rounded-full overflow-hidden">
+                        <div class="bg-[#1E3A8A] h-full rounded-full" style="width: 55%"></div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="flex justify-between text-sm font-bold text-slate-700 mb-1">
+                        <span>Alíquotas Individuais de Ativos</span>
+                        <span class="text-[#14B8A6]">35%</span>
+                    </div>
+                    <div class="w-full bg-slate-200 h-5 rounded-full overflow-hidden">
+                        <div class="bg-[#14B8A6] h-full rounded-full" style="width: 35%"></div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="flex justify-between text-sm font-bold text-slate-700 mb-1">
+                        <span>Taxação de Proventos de Inativos</span>
+                        <span class="text-[#F97316]">10%</span>
+                    </div>
+                    <div class="w-full bg-slate-200 h-5 rounded-full overflow-hidden">
+                        <div class="bg-[#F97316] h-full rounded-full" style="width: 10%"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="text-xs text-center text-slate-500 mt-4 font-semibold">A solidariedade intergeracional evita que o plano de capitalização dependa unicamente de aportes correntes.</p>
+        </div>
+    </section>
+
+    <section class="bg-slate-100 rounded-3xl shadow-lg border border-slate-200 overflow-hidden">
+        <div class="p-8 md:p-12">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-black text-slate-800 border-b-4 border-[#F43F5E] inline-block pb-2 mb-4">2. O Relógio do Repasse e Inadimplência</h2>
+                <p class="text-lg text-slate-600 max-w-3xl mx-auto">
+                    Atrasos de repasse pelo Ente quebram o fluxo de investimentos e a rentabilidade estimada. A lei local deve prever encargos estritos.
+                </p>
+            </div>
+
+            <div class="flex flex-col md:flex-row items-stretch justify-center gap-6">
+                <div class="flex-1 bg-white p-8 rounded-2xl shadow-md text-center relative">
+                    <div class="badge-node bg-slate-700 absolute -top-4 left-1/2 transform -translate-x-1/2">1</div>
+                    <div class="text-6xl mb-4">⏱️</div>
+                    <h3 class="font-black text-slate-800 text-xl mb-3">Prazo Limite</h3>
+                    <p class="text-slate-600 font-semibold">Até o último dia útil do mês subsequente ao da competência da folha de pagamento.</p>
+                </div>
+
+                <div class="flex items-center justify-center text-4xl text-slate-400 rotate-90 md:rotate-0">
+                    ➡️
+                </div>
+
+                <div class="flex-1 bg-rose-50 p-8 rounded-2xl border border-rose-200 text-center relative">
+                    <div class="badge-node bg-[#F43F5E] absolute -top-4 left-1/2 transform -translate-x-1/2">2</div>
+                    <div class="text-6xl mb-4">⚖️</div>
+                    <h3 class="font-black text-rose-900 text-xl mb-3">Falta de Repasse</h3>
+                    <div class="text-left text-sm text-rose-900 font-bold space-y-3 bg-white p-4 rounded-xl shadow-sm inline-block w-full">
+                        <p>📈 Atualização Monetária (Piso: Reajuste dos Proventos)</p>
+                        <p>📈 Juros &ge; Taxa Atuarial adotada no Plano</p>
+                        <p>🛑 Multa e Responsabilização Disciplinar/Cível</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-10 bg-[#1E3A8A] text-white p-6 rounded-2xl flex flex-col sm:flex-row items-center sm:items-start gap-6 shadow-inner">
+                <div class="text-5xl">🛡️</div>
+                <div>
+                    <h4 class="font-bold text-xl mb-2 text-blue-100">Dívida Prescrita e Equilíbrio Atuarial (§ 5º)</h4>
+                    <p class="text-blue-50 font-light leading-relaxed">
+                        Se o crédito tributário do RPPS com o Ente expirar por prescrição ou decadência, <strong>a obrigação financeira de repasse do Ente permanece íntegra</strong>. Em cumprimento ao comando constitucional de equilíbrio atuarial do Artigo 40 da CF/88, o Ente é obrigado a recompor financeiramente as perdas geradas no fundo.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="glass-card p-8 rounded-3xl order-2 lg:order-1">
+            <h3 class="text-center font-bold text-slate-800 mb-6 text-xl">Arrecadação Excepcional de Inativos</h3>
+            <div class="chart-container">
+                <canvas id="retiredTaxChart"></canvas>
+            </div>
+            <p class="text-xs text-center text-slate-500 mt-4 font-semibold">Demonstração da expansão da base contributiva no déficit. Tudo acima de 1 salário mínimo torna-se tributável.</p>
+        </div>
+        <div class="order-1 lg:order-2 space-y-6">
+            <h2 class="text-3xl font-black text-slate-800 border-b-4 border-[#14B8A6] inline-block pb-2">3. O Remédio Atuarial do Déficit (Art. 8º)</h2>
+            <p class="text-lg text-slate-600 leading-relaxed">
+                A Emenda Constitucional nº 103/2019 e a Portaria abriram uma permissão excepcional de taxação emergencial de aposentados e pensionistas em regimes que registram desequilíbrio estrutural.
+            </p>
+            <div class="bg-teal-50 p-6 rounded-2xl border-l-8 border-[#14B8A6] shadow-sm mb-4">
+                <h4 class="font-black text-[#0f766e] text-lg mb-2">Cenário Padrão (Saudável)</h4>
+                <p class="text-teal-900 text-sm font-medium">Inativos e pensionistas contribuem apenas sobre a parcela de proventos que supera o Teto do RGPS (atualmente ~R$ 7.786). A isenção é alta.</p>
+            </div>
+            <div class="bg-rose-50 p-6 rounded-2xl border-l-8 border-[#F43F5E] shadow-sm">
+                <h4 class="font-black text-[#991b1b] text-lg mb-2">Cenário de Déficit Atuarial</h4>
+                <p class="text-rose-900 text-sm font-semibold">O Ente pode aprovar lei municipal ou estadual reduzindo a faixa de isenção. A alíquota previdenciária passará a incidir sobre a parcela que supera <strong>um Salário Mínimo</strong> (~R$ 1.412).</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="mb-16">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-black text-slate-800 border-b-4 border-[#F97316] inline-block pb-2 mb-4">4. As Regras do Processo Legislativo</h2>
+            <p class="text-lg text-slate-600 max-w-3xl mx-auto">
+                Alíquotas e planos de custeio exigem formalidade estrita de votação e transparência. A Portaria veda aprovações genéricas ou comissões arbitrárias.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <div class="bg-white p-8 rounded-2xl shadow-md border-t-8 border-[#1E3A8A] flex flex-col justify-between">
+                <div>
+                    <h3 class="font-black text-[#1E3A8A] text-xl mb-4">Anterioridade & Novas Regras (Art. 9º)</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                        Normalmente, a instituição ou aumento de alíquotas patronais ou dos servidores exige aguardar o decurso de <strong>90 dias (noventena)</strong> para a cobrança, contados da publicação da lei.
+                    </p>
+                    <div class="bg-orange-50 p-4 rounded-xl border border-orange-200">
+                        <span class="font-bold text-[#F97316] text-xs uppercase tracking-wider block mb-1">🔥 Alteração MPS nº 2.010/2025</span>
+                        <p class="text-xs text-orange-950 font-bold leading-relaxed">
+                            A noventena de 90 dias <strong>foi dispensada para os Aportes Financeiros</strong> mensais do plano de amortização do déficit (§ 1º). Eles podem entrar em vigor imediatamente após a sanção, acelerando o salvamento de regimes em colapso.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl shadow-md border-t-8 border-[#14B8A6] flex flex-col justify-between">
+                <div>
+                    <h3 class="font-black text-[#0f766e] text-xl mb-4">Proibição da "Lei Preguiçosa" (Art. 10)</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                        É ilegal aprovar leis de custeio contendo apenas menções indiretas a "tabelas do atuário". O legislador do Ente deve detalhar tudo de forma explícita na lei ordinária.
+                    </p>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-slate-700 text-xs font-bold space-y-2">
+                        <p>✔ Exibir todas as parcelas e tabelas mensais de equacionamento.</p>
+                        <p>✔ Discriminar percentuais e competências de início e fim dos planos.</p>
+                        <p>✔ Estipular prazos e critérios moratórios em simetria ao Artigo 7º.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<script>
+const wrapText = (text) => {
+    if (text.length <= 16) return text;
+    const words = text.split(' ');
+    const lines = [];
+    let currentLine = '';
+    words.forEach(word => {
+        if ((currentLine + word).length > 16) {
+            if (currentLine) lines.push(currentLine.trim());
+            currentLine = word + ' ';
+        } else {
+            currentLine += word + ' ';
+        }
+    });
+    if (currentLine) lines.push(currentLine.trim());
+    return lines.length > 0 ? lines : [text];
+};
+
+Chart.defaults.color = '#1e293b'; // Slate 800 (Alto Contraste)
+Chart.defaults.font.family = "'Segoe UI', system-ui, -apple-system, sans-serif";
+Chart.defaults.font.size = 13;
+Chart.defaults.font.weight = '600';
+
+const defaultTooltipConfig = {
+    plugins: {
+        tooltip: {
+            callbacks: {
+                title: function(tooltipItems) {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    if (Array.isArray(label)) {
+                        return label.join(' ');
+                    } else {
+                        return label;
+                    }
+                }
+            }
+        },
+        legend: {
+            position: 'bottom',
+            labels: {
+                font: { size: 13, weight: '700' },
+                padding: 18,
+                color: '#1e293b'
+            }
+        }
+    }
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+
+    const ctxRetiredTax = document.getElementById('retiredTaxChart').getContext('2d');
+    new Chart(ctxRetiredTax, {
+        type: 'bar',
+        data: {
+            labels: [
+                wrapText('RPPS Saudável (Regra Geral)'),
+                wrapText('RPPS com Déficit (Taxação Ampliada)')
+            ],
+            datasets: [
+                {
+                    label: 'Parcela Isenta de Desconto',
+                    data: [7786, 1412],
+                    backgroundColor: '#cbd5e1',
+                    borderRadius: 4
+                },
+                {
+                    label: 'Nova Faixa Tributada (Déficit)',
+                    data: [0, 6374],
+                    backgroundColor: '#F43F5E',
+                    borderRadius: 4
+                },
+                {
+                    label: 'Faixa Tributada Comum',
+                    data: [5000, 5000],
+                    backgroundColor: '#F97316',
+                    borderRadius: 4
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: { stacked: true, grid: { display: false }, ticks: { font: { weight: 'bold' } } },
+                y: { 
+                    stacked: true, 
+                    beginAtZero: true,
+                    title: { display: true, text: 'Base de Cálculo (R$)', font: { weight: 'bold', size: 13 } },
+                    grid: { color: '#f1f5f9' }
+                }
+            },
+            plugins: {
+                legend: { position: 'bottom', labels: { font: { family: "'Segoe UI', sans-serif", size: 13 } } },
+                tooltip: defaultTooltipConfig.plugins.tooltip
+            }
+        }
+    });
+});
+</script>
+
+</body>
+</html>
